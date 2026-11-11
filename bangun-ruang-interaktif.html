@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Bangun Ruang - Media Pembelajaran Matematika Fase C</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1/dist/umd/lucide.min.js"></script>
+    <!-- Base Runtime SDK Required for platform integration -->
+    <script src="https://sf16-web-login-neutral.capcutstatic.com/obj/capcut-web-login-static/ies/ccweb/ai_design_artifact_sdk/base-runtime.0.1.0.prod.min.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0fdf4; /* Light fresh green bg */
+        }
+        .heading-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+        /* Cute custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #86efac;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4ade80;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col antialiased">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-emerald-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-500 text-white p-2.5 rounded-2xl shadow-md transform rotate-[-3deg] hover:rotate-[3deg] transition-transform duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="heading-font text-2xl font-bold text-emerald-600 tracking-wide leading-none">EduRuang</h1>
+                    <span class="text-xs font-semibold text-slate-400">Media Belajar Interaktif</span>
+                </div>
+            </div>
+            
+            <!-- Desk/Nav Menu Links -->
+            <nav class="hidden md:flex space-x-2">
+                <button onclick="scrollToSection('beranda')" class="nav-btn px-4 py-2 rounded-xl text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 font-bold transition-all duration-200 cursor-pointer">Beranda</button>
+                <button onclick="scrollToSection('kurikulum')" class="nav-btn px-4 py-2 rounded-xl text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 font-bold transition-all duration-200 cursor-pointer">CP, TP & ATP</button>
+                <button onclick="scrollToSection('eksplorasi')" class="nav-btn px-4 py-2 rounded-xl text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 font-bold transition-all duration-200 cursor-pointer">Materi Interaktif</button>
+                <button onclick="scrollToSection('asesmen')" class="nav-btn px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer scale-105 hover:scale-110 ml-2 flex items-center gap-1.5"><i data-lucide="gamepad-2" class="w-4 h-4"></i> Asesmen Kuis</button>
+            </nav>
+
+            <!-- Score Badge Header -->
+            <div class="flex items-center space-x-3 bg-indigo-50 border-2 border-indigo-200 px-4 py-2 rounded-2xl shadow-inner">
+                <div class="bg-indigo-500 text-white p-1.5 rounded-lg">
+                    <i data-lucide="award" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <div class="text-[10px] uppercase font-extrabold tracking-wider text-indigo-400 leading-none">Skor Kuis</div>
+                    <div class="text-lg font-black text-indigo-700 leading-none"><span id="header-score">0</span> <span class="text-xs font-medium text-indigo-500">Poin</span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECTION 1: HERO / BERANDA -->
+        <section id="beranda" class="relative overflow-hidden py-12 md:py-24 bg-gradient-to-b from-white to-emerald-50/50">
+            <!-- Decorative Background Elements -->
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-emerald-200 rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-pulse"></div>
+            <div class="absolute top-40 right-10 w-52 h-52 bg-amber-200 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-pulse" style="animation-delay: 2s;"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-emerald-100 border border-emerald-300 text-emerald-800 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-sm">
+                            <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span>Kurikulum Merdeka • Fase C (SD)</span>
+                        </div>
+                        <h2 class="heading-font text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 leading-[1.1] tracking-tight">
+                            Jelajahi <span class="text-emerald-500 relative">Bangun Ruang<span class="absolute bottom-1 left-0 w-full h-3 bg-emerald-200 -z-10 rounded"></span></span> dengan Cara Seru!
+                        </h2>
+                        <p class="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto lg:mx-0">
+                            Yuk, kenalan dengan Kubus & Balok melalui visualisasi 3D interaktif, pelajari rumusnya, dan buktikan kehebatanmu lewat tantangan kuis gamifikasi langsung!
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+                            <button onclick="scrollToSection('eksplorasi')" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold rounded-2xl shadow-lg hover:shadow-emerald-200 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 text-lg">
+                                <i data-lucide="play-circle" class="w-6 h-6"></i> Mulai Petualangan
+                            </button>
+                            <button onclick="scrollToSection('kurikulum')" class="px-8 py-4 bg-white hover:bg-slate-50 border-3 border-emerald-100 hover:border-emerald-300 text-slate-700 font-bold rounded-2xl shadow-md hover:shadow-lg hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 text-lg">
+                                <i data-lucide="book-open" class="w-5 h-5"></i> Lihat Capaian Belajar
+                            </button>
+                        </div>
+
+                        <!-- Fun mini stat counts -->
+                        <div class="grid grid-cols-3 gap-4 pt-6 max-w-md mx-auto lg:mx-0 border-t border-slate-200/80">
+                            <div class="text-center lg:text-left">
+                                <span class="block text-2xl font-black text-emerald-600 heading-font">3D</span>
+                                <span class="text-xs font-semibold text-slate-500">Visual Interaktif</span>
+                            </div>
+                            <div class="text-center lg:text-left border-x border-slate-200">
+                                <span class="block text-2xl font-black text-amber-500 heading-font">5+</span>
+                                <span class="text-xs font-semibold text-slate-500">Tantangan Kuis</span>
+                            </div>
+                            <div class="text-center lg:text-left">
+                                <span class="block text-2xl font-black text-indigo-600 heading-font">3</span>
+                                <span class="text-xs font-semibold text-slate-500">Lencana Keren</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Interactive 3D Mockup Graphic -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-72 h-72 sm:w-96 sm:h-96 bg-white rounded-3xl shadow-2xl border-4 border-emerald-100 p-6 flex flex-col justify-between overflow-hidden transform hover:rotate-2 transition-all duration-500">
+                            <!-- Background Grid decoration -->
+                            <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:24px_24px] opacity-30"></div>
+                            
+                            <div class="z-10 flex items-center justify-between">
+                                <span class="px-3 py-1 bg-amber-100 text-amber-800 text-[10px] font-extrabold uppercase rounded-full border border-amber-200 tracking-wider">Kubus Virtual</span>
+                                <div class="flex space-x-1">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                                </div>
+                            </div>
+
+                            <!-- Animated Isometric Wireframe CSS-rendered Cube -->
+                            <div class="relative w-full h-44 flex items-center justify-center z-10">
+                                <div class="scene w-32 h-32" style="perspective: 600px;">
+                                    <div class="cube-anim w-full h-full relative" style="transform-style: preserve-3d; animation: spin-slow 12s infinite linear;">
+                                        <!-- Top face -->
+                                        <div class="absolute w-28 h-28 bg-emerald-500/20 border-2 border-emerald-500" style="transform: rotateX(90deg) translateZ(56px); backdrop-filter: blur(1px);"></div>
+                                        <!-- Bottom face -->
+                                        <div class="absolute w-28 h-28 bg-emerald-500/20 border-2 border-emerald-500" style="transform: rotateX(-90deg) translateZ(56px); backdrop-filter: blur(1px);"></div>
+                                        <!-- Front face -->
+                                        <div class="absolute w-28 h-28 bg-emerald-400/30 border-2 border-emerald-500 flex items-center justify-center" style="transform: rotateY(0deg) translateZ(56px); backdrop-filter: blur(1px);">
+                                            <span class="text-emerald-700 font-extrabold text-xs bg-white/80 px-1.5 py-0.5 rounded shadow-sm">Kubus</span>
+                                        </div>
+                                        <!-- Back face -->
+                                        <div class="absolute w-28 h-28 bg-emerald-500/10 border-2 border-emerald-500" style="transform: rotateY(180deg) translateZ(56px);"></div>
+                                        <!-- Left face -->
+                                        <div class="absolute w-28 h-28 bg-emerald-500/10 border-2 border-emerald-500" style="transform: rotateY(-90deg) translateZ(56px);"></div>
+                                        <!-- Right face -->
+                                        <div class="absolute w-28 h-28 bg-emerald-500/10 border-2 border-emerald-500" style="transform: rotateY(90deg) translateZ(56px);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <style>
+                                @keyframes spin-slow {
+                                    0% { transform: rotateX(-20deg) rotateY(0deg); }
+                                    100% { transform: rotateX(-20deg) rotateY(360deg); }
+                                }
+                            </style>
+
+                            <div class="z-10 bg-slate-50 border border-slate-100 p-3 rounded-2xl flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                                    <span class="text-[11px] font-bold text-slate-500">Rumus Volume:</span>
+                                </div>
+                                <span class="heading-font text-xs font-black text-emerald-600 bg-emerald-100/50 px-2 py-1 rounded-lg">V = s x s x s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: KURIKULUM MERDEKA (CP, TP, ATP) -->
+        <section id="kurikulum" class="py-16 bg-white border-y-4 border-slate-100 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                        <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                        <span>Dasar Pembelajaran</span>
+                    </div>
+                    <h3 class="heading-font text-3xl sm:text-4xl font-black text-slate-800">Capaian & Alur Pembelajaran</h3>
+                    <p class="text-slate-500 font-medium text-sm mt-2">Panduan kurikulum Merdeka untuk membantu guru dan siswa memahami tujuan belajar bangun ruang di Fase C.</p>
+                </div>
+
+                <!-- CP, TP, ATP Tab Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Sidebar Controls (Modern Card Selector) -->
+                    <div class="lg:col-span-4 flex flex-col space-y-3 bg-slate-50 p-4 rounded-3xl border border-slate-100">
+                        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest px-3 pt-2 mb-1">Pilih Navigasi Kurikulum</h4>
+                        
+                        <button onclick="switchTab('cp')" id="tab-btn-cp" class="tab-btn active-tab w-full text-left p-4 rounded-2xl border-2 flex items-center justify-between transition-all duration-300 cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <div class="tab-icon-container bg-emerald-500 text-white p-2.5 rounded-xl shadow-md">
+                                    <i data-lucide="compass" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-extrabold text-slate-400 uppercase tracking-wider leading-none">CP</div>
+                                    <div class="text-base font-black text-slate-700 mt-1 heading-font">Capaian Pembelajaran</div>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                        </button>
+
+                        <button onclick="switchTab('tp')" id="tab-btn-tp" class="tab-btn w-full text-left p-4 rounded-2xl border-2 border-transparent bg-white shadow-sm hover:bg-emerald-50/50 hover:border-emerald-200 flex items-center justify-between transition-all duration-300 cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <div class="tab-icon-container bg-slate-200 text-slate-600 p-2.5 rounded-xl">
+                                    <i data-lucide="target" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-extrabold text-slate-400 uppercase tracking-wider leading-none">TP</div>
+                                    <div class="text-base font-black text-slate-700 mt-1 heading-font">Tujuan Pembelajaran</div>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                        </button>
+
+                        <button onclick="switchTab('atp')" id="tab-btn-atp" class="tab-btn w-full text-left p-4 rounded-2xl border-2 border-transparent bg-white shadow-sm hover:bg-emerald-50/50 hover:border-emerald-200 flex items-center justify-between transition-all duration-300 cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <div class="tab-icon-container bg-slate-200 text-slate-600 p-2.5 rounded-xl">
+                                    <i data-lucide="milestone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-extrabold text-slate-400 uppercase tracking-wider leading-none">ATP</div>
+                                    <div class="text-base font-black text-slate-700 mt-1 heading-font">Alur Tujuan Pembelajaran</div>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                        </button>
+                    </div>
+
+                    <!-- Content Display Card -->
+                    <div class="lg:col-span-8 bg-slate-50 border-4 border-emerald-100 rounded-3xl p-6 md:p-8 min-h-[350px] shadow-sm flex flex-col justify-between">
+                        
+                        <!-- TAB CONTENT: CP -->
+                        <div id="tab-content-cp" class="tab-pane space-y-6">
+                            <div class="flex items-center space-x-3 pb-4 border-b border-slate-200">
+                                <div class="bg-emerald-100 text-emerald-700 p-2 rounded-xl">
+                                    <i data-lucide="compass" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="heading-font text-xl font-bold text-slate-800">Deskripsi Capaian Pembelajaran (Fase C)</h4>
+                            </div>
+                            <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-inner">
+                                <p class="text-slate-600 leading-relaxed font-medium">
+                                    "Pada akhir fase C, peserta didik dapat mengonstruksi dan mengurai berbagai bangun ruang (kubus, balok, dan gabungannya) serta mengenali visualisasi spasial. Mereka juga dapat membandingkan karakteristik antar bangun ruang berdasarkan sifat-sifatnya (rusuk, titik sudut, sisi, diagonal), dan menentukan volume dari bangun kubus serta balok secara mandiri maupun kolaboratif."
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold text-slate-500">
+                                <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl border border-slate-100">
+                                    <i data-lucide="check-circle" class="text-emerald-500 w-4 h-4"></i> Fokus Konstruksi & Deformasi
+                                </div>
+                                <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl border border-slate-100">
+                                    <i data-lucide="check-circle" class="text-emerald-500 w-4 h-4"></i> Volume Kubus & Balok
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB CONTENT: TP -->
+                        <div id="tab-content-tp" class="tab-pane hidden space-y-6">
+                            <div class="flex items-center space-x-3 pb-4 border-b border-slate-200">
+                                <div class="bg-indigo-100 text-indigo-700 p-2 rounded-xl">
+                                    <i data-lucide="target" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="heading-font text-xl font-bold text-slate-800">Tujuan Pembelajaran (TP)</h4>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-4 bg-white p-4 rounded-2xl border-l-4 border-emerald-500 shadow-sm">
+                                    <span class="bg-emerald-100 text-emerald-800 font-extrabold text-xs px-2.5 py-1 rounded-full mt-0.5">TP 1</span>
+                                    <div>
+                                        <p class="font-extrabold text-slate-700 text-base">Menganalisis Sifat Bangun Ruang</p>
+                                        <p class="text-slate-500 text-sm mt-1">Siswa mampu mengidentifikasi jumlah sisi, rusuk, titik sudut, dan jaring-jaring pada kubus dan balok secara akurat.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 bg-white p-4 rounded-2xl border-l-4 border-amber-500 shadow-sm">
+                                    <span class="bg-amber-100 text-amber-800 font-extrabold text-xs px-2.5 py-1 rounded-full mt-0.5">TP 2</span>
+                                    <div>
+                                        <p class="font-extrabold text-slate-700 text-base">Memformulasikan & Menghitung Volume</p>
+                                        <p class="text-slate-500 text-sm mt-1">Siswa mampu menghitung besar volume kubus dan balok dengan satuan baku secara benar berdasarkan dimensi ukuran.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 bg-white p-4 rounded-2xl border-l-4 border-indigo-500 shadow-sm">
+                                    <span class="bg-indigo-100 text-indigo-800 font-extrabold text-xs px-2.5 py-1 rounded-full mt-0.5">TP 3</span>
+                                    <div>
+                                        <p class="font-extrabold text-slate-700 text-base">Penyelesaian Masalah Nyata</p>
+                                        <p class="text-slate-500 text-sm mt-1">Siswa terampil merumuskan solusi matematis untuk masalah sehari-hari yang berkaitan dengan kapasitas wadah balok atau kubus.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB CONTENT: ATP -->
+                        <div id="tab-content-atp" class="tab-pane hidden space-y-6">
+                            <div class="flex items-center space-x-3 pb-4 border-b border-slate-200">
+                                <div class="bg-amber-100 text-amber-700 p-2 rounded-xl">
+                                    <i data-lucide="milestone" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="heading-font text-xl font-bold text-slate-800">Alur Tujuan Pembelajaran (ATP)</h4>
+                            </div>
+                            
+                            <!-- Timeline Steps -->
+                            <div class="relative pl-6 border-l-4 border-emerald-100 space-y-6 py-2">
+                                <div class="relative">
+                                    <div class="absolute -left-[34px] top-1 bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-black text-xs">1</div>
+                                    <h5 class="font-black text-slate-700">Tahap Pengenalan Struktur</h5>
+                                    <p class="text-slate-500 text-xs mt-0.5">Eksplorasi visual benda nyata di sekitar yang menyerupai kubus dan balok lalu mengidentifikasi elemen penyusunnya (sisi, rusuk, sudut).</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[34px] top-1 bg-amber-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-black text-xs">2</div>
+                                    <h5 class="font-black text-slate-700">Tahap Eksperimen Rumus</h5>
+                                    <p class="text-slate-500 text-xs mt-0.5">Membuktikan rumus volume dengan kubus satuan virtual lalu merumuskan formula volume secara deduktif.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[34px] top-1 bg-indigo-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-black text-xs">3</div>
+                                    <h5 class="font-black text-slate-700">Tahap Evaluasi & Penguatan</h5>
+                                    <p class="text-slate-500 text-xs mt-0.5">Menguji tingkat pemahaman siswa menggunakan asesmen kuis interaktif dengan skor dinamis dan umpan balik pembahasan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer Info -->
+                        <div class="mt-6 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+                            <span class="flex items-center gap-1.5"><i data-lucide="info" class="w-4 h-4"></i> Mode Kurikulum Merdeka</span>
+                            <span>SD Kelas V & VI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: MATERI INTERAKTIF (3D EXPLORER & CALCULATOR) -->
+        <section id="eksplorasi" class="py-16 bg-gradient-to-b from-emerald-50/50 to-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-1.5 bg-emerald-100 border border-emerald-300 text-emerald-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                        <i data-lucide="box" class="w-4 h-4"></i>
+                        <span>Mari Bereksperimen</span>
+                    </div>
+                    <h3 class="heading-font text-3xl sm:text-4xl font-black text-slate-800">Laboratorium Bangun Ruang Interaktif</h3>
+                    <p class="text-slate-500 font-medium text-sm mt-2">Ubah dimensi ukuran di bawah ini secara langsung dan perhatikan bagaimana volume dan bentuk fisiknya berubah secara real-time!</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    
+                    <!-- Left Column: Controls and calculations -->
+                    <div class="lg:col-span-5 bg-white border-4 border-emerald-100 rounded-3xl p-6 shadow-md flex flex-col justify-between">
+                        <div>
+                            <!-- Shape Selector Buttons -->
+                            <div class="flex bg-slate-100 p-1.5 rounded-2xl mb-6">
+                                <button onclick="selectShape('kubus')" id="btn-shape-kubus" class="flex-1 py-3 rounded-xl font-black heading-font text-sm flex items-center justify-center gap-2 transition-all duration-300 bg-white shadow text-emerald-600 border border-emerald-100 cursor-pointer">
+                                    <i data-lucide="box" class="w-4 h-4"></i> KUBUS
+                                </button>
+                                <button onclick="selectShape('balok')" id="btn-shape-balok" class="flex-1 py-3 rounded-xl font-black heading-font text-sm flex items-center justify-center gap-2 transition-all duration-300 text-slate-500 hover:text-slate-800 cursor-pointer">
+                                    <i data-lucide="layers" class="w-4 h-4"></i> BALOK
+                                </button>
+                            </div>
+
+                            <!-- Interactive Sliders Header -->
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-extrabold text-slate-800 text-base flex items-center gap-1.5">
+                                    <i data-lucide="sliders" class="w-5 h-5 text-emerald-500"></i> Atur Ukuran Bangun
+                                </h4>
+                                <span class="text-xs font-bold text-slate-400 bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg">Satuan: cm</span>
+                            </div>
+
+                            <!-- Dynamic Sliders (Shows/hides based on active shape) -->
+                            <div class="space-y-4">
+                                <!-- KUBUS SLIDER -->
+                                <div id="slider-kubus-container" class="space-y-2">
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="font-bold text-slate-600">Panjang Sisi (s)</span>
+                                        <span id="label-side" class="font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg text-xs border border-emerald-100">6 cm</span>
+                                    </div>
+                                    <input type="range" id="input-side" min="2" max="10" value="6" oninput="updateVisualization()" class="w-full h-3 bg-slate-100 rounded-xl appearance-none cursor-pointer accent-emerald-500">
+                                    <div class="flex justify-between text-[10px] font-bold text-slate-400">
+                                        <span>Min: 2 cm</span>
+                                        <span>Max: 10 cm</span>
+                                    </div>
+                                </div>
+
+                                <!-- BALOK SLIDERS -->
+                                <div id="slider-balok-container" class="hidden space-y-4">
+                                    <!-- Length Slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center text-sm">
+                                            <span class="font-bold text-slate-600">Panjang (p)</span>
+                                            <span id="label-length" class="font-black text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg text-xs border border-indigo-100">8 cm</span>
+                                        </div>
+                                        <input type="range" id="input-length" min="3" max="12" value="8" oninput="updateVisualization()" class="w-full h-3 bg-slate-100 rounded-xl appearance-none cursor-pointer accent-indigo-500">
+                                    </div>
+
+                                    <!-- Width Slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center text-sm">
+                                            <span class="font-bold text-slate-600">Lebar (l)</span>
+                                            <span id="label-width" class="font-black text-rose-600 bg-rose-50 px-3 py-1 rounded-lg text-xs border border-rose-100">5 cm</span>
+                                        </div>
+                                        <input type="range" id="input-width" min="2" max="8" value="5" oninput="updateVisualization()" class="w-full h-3 bg-slate-100 rounded-xl appearance-none cursor-pointer accent-rose-500">
+                                    </div>
+
+                                    <!-- Height Slider -->
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between items-center text-sm">
+                                            <span class="font-bold text-slate-600">Tinggi (t)</span>
+                                            <span id="label-height" class="font-black text-amber-600 bg-amber-50 px-3 py-1 rounded-lg text-xs border border-amber-100">6 cm</span>
+                                        </div>
+                                        <input type="range" id="input-height" min="2" max="8" value="6" oninput="updateVisualization()" class="w-full h-3 bg-slate-100 rounded-xl appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Calculation Results Dashboard -->
+                        <div class="mt-8 pt-6 border-t border-slate-100 space-y-4">
+                            <!-- Formula Title -->
+                            <div class="bg-slate-50 border border-slate-100 p-4 rounded-2xl">
+                                <span class="text-xs font-bold text-slate-400 block mb-1">Formula & Langkah Penghitungan:</span>
+                                <div id="formula-text" class="heading-font text-base font-extrabold text-slate-800">
+                                    V = s &times; s &times; s
+                                </div>
+                                <div id="calculation-steps" class="text-xs text-slate-500 font-medium mt-1">
+                                    V = 6 &times; 6 &times; 6 = 216 cm³
+                                </div>
+                            </div>
+
+                            <!-- Big Number Highlight -->
+                            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white p-5 rounded-2xl shadow-lg relative overflow-hidden">
+                                <div class="absolute right-2 -bottom-4 opacity-15">
+                                    <i data-lucide="calculator" class="w-24 h-24"></i>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-100 block uppercase tracking-wider">Hasil Volume</span>
+                                <div class="flex items-baseline space-x-1.5 mt-1">
+                                    <span id="calculated-volume" class="heading-font text-4xl font-black">216</span>
+                                    <span class="text-base font-extrabold text-emerald-100">cm³</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive 3D Render & Sifat-Sifat -->
+                    <div class="lg:col-span-7 bg-white border-4 border-emerald-100 rounded-3xl p-6 shadow-md flex flex-col justify-between">
+                        
+                        <!-- 3D Viewport Box -->
+                        <div class="relative bg-slate-50 rounded-2xl border border-slate-100 h-72 w-full flex items-center justify-center overflow-hidden shadow-inner">
+                            <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:16px_16px] opacity-60"></div>
+                            
+                            <!-- Legend details -->
+                            <div class="absolute left-3 top-3 bg-white/95 backdrop-blur-sm border border-slate-100 p-2.5 rounded-xl text-[10px] font-bold text-slate-500 space-y-1 z-10">
+                                <div class="flex items-center gap-1.5"><span class="w-2.5 h-1 bg-emerald-500 inline-block rounded"></span> Sisi Depan</div>
+                                <div class="flex items-center gap-1.5"><span class="w-2.5 h-1 bg-teal-600 inline-block rounded"></span> Sisi Samping</div>
+                                <div class="flex items-center gap-1.5"><span class="w-2.5 h-1 bg-amber-400 inline-block rounded"></span> Sisi Atas</div>
+                            </div>
+
+                            <!-- Interactive HTML/CSS 3D Shape -->
+                            <div class="scene w-48 h-48 flex items-center justify-center transform scale-110" style="perspective: 800px;">
+                                <div id="interactive-shape-wrapper" class="w-32 h-32 relative" style="transform-style: preserve-3d; transform: rotateX(-25deg) rotateY(45deg); transition: transform 0.5s ease;">
+                                    
+                                    <!-- Dynamic sides created via JavaScript to allow real-time resizing in three dimension scales -->
+                                    <div id="shape-face-front" class="absolute bg-emerald-500/30 border-2 border-emerald-600 flex items-center justify-center text-[10px] font-extrabold text-emerald-800" style="transform-origin: center;">p</div>
+                                    <div id="shape-face-back" class="absolute bg-emerald-500/10 border-2 border-emerald-600"></div>
+                                    <div id="shape-face-left" class="absolute bg-teal-600/20 border-2 border-teal-700"></div>
+                                    <div id="shape-face-right" class="absolute bg-teal-600/30 border-2 border-teal-700 flex items-center justify-center text-[10px] font-extrabold text-teal-800">l</div>
+                                    <div id="shape-face-top" class="absolute bg-amber-400/30 border-2 border-amber-500 flex items-center justify-center text-[10px] font-extrabold text-amber-700">t</div>
+                                    <div id="shape-face-bottom" class="absolute bg-amber-400/10 border-2 border-amber-500"></div>
+                                    
+                                </div>
+                            </div>
+
+                            <!-- Interactive Tilt Controls -->
+                            <div class="absolute bottom-3 right-3 flex space-x-1 z-10">
+                                <button onclick="rotateShape('left')" class="p-2 bg-white hover:bg-emerald-50 border border-slate-100 rounded-xl shadow-sm hover:shadow text-slate-600 active:scale-95 transition-all cursor-pointer"><i data-lucide="rotate-ccw" class="w-4 h-4"></i></button>
+                                <button onclick="rotateShape('right')" class="p-2 bg-white hover:bg-emerald-50 border border-slate-100 rounded-xl shadow-sm hover:shadow text-slate-600 active:scale-95 transition-all cursor-pointer"><i data-lucide="rotate-cw" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Sifat-sifat Bangun Ruang Card -->
+                        <div class="mt-6 space-y-4">
+                            <h4 class="font-extrabold text-slate-800 text-base flex items-center gap-1.5 pb-2 border-b border-slate-100">
+                                <i data-lucide="sparkles" class="w-5 h-5 text-amber-400"></i> Karakteristik Sifat Bangun
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-2xl text-center">
+                                    <span class="block text-2xl font-black text-indigo-700 heading-font" id="sifat-sisi">6</span>
+                                    <span class="text-[11px] font-bold text-slate-500 uppercase">Sisi Datar</span>
+                                </div>
+                                <div class="bg-rose-50 border border-rose-100 p-3 rounded-2xl text-center">
+                                    <span class="block text-2xl font-black text-rose-700 heading-font" id="sifat-rusuk">12</span>
+                                    <span class="text-[11px] font-bold text-slate-500 uppercase">Rusuk</span>
+                                </div>
+                                <div class="bg-amber-50 border border-amber-100 p-3 rounded-2xl text-center">
+                                    <span class="block text-2xl font-black text-amber-700 heading-font" id="sifat-sudut">8</span>
+                                    <span class="text-[11px] font-bold text-slate-500 uppercase">Titik Sudut</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-start space-x-3">
+                                <div class="bg-amber-100 text-amber-800 p-1.5 rounded-lg mt-0.5">
+                                    <i data-lucide="lightbulb" class="w-4.5 h-4.5"></i>
+                                </div>
+                                <div>
+                                    <h5 class="text-xs font-extrabold text-slate-700 uppercase">Tahukah Kamu?</h5>
+                                    <p id="funfact-text" class="text-xs text-slate-500 font-medium mt-0.5">
+                                        Semua sisi pada kubus memiliki bentuk dan ukuran yang sama persis (kongruen) berupa persegi!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: ASESMEN INTERAKTIF (GAMIFIED QUIZ) -->
+        <section id="asesmen" class="py-16 bg-white relative">
+            <!-- Decorative curves or waves -->
+            <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-emerald-50/50 to-white/0"></div>
+            
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <div class="inline-flex items-center space-x-1.5 bg-amber-100 border border-amber-300 text-amber-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+                        <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+                        <span>Uji Keahlianmu</span>
+                    </div>
+                    <h3 class="heading-font text-3xl sm:text-4xl font-black text-slate-800">Tantangan Kuis EduRuang</h3>
+                    <p class="text-slate-500 font-medium text-sm mt-2">Dapatkan bintang dan raih Lencana Tertinggi! Kerjakan 5 tantangan soal digital di bawah ini.</p>
+                </div>
+
+                <!-- Main Quiz Card Frame -->
+                <div class="bg-slate-50 border-4 border-amber-300 rounded-3xl p-6 md:p-10 shadow-xl relative overflow-hidden min-h-[480px] flex flex-col justify-between">
+                    
+                    <!-- Progress Bar Header (Visible only during quiz state) -->
+                    <div id="quiz-progress-section" class="flex items-center justify-between pb-4 border-b border-slate-200">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs font-black text-slate-400 uppercase tracking-widest">Pertanyaan</span>
+                            <span id="quiz-progress-text" class="heading-font text-base font-black text-amber-500 bg-amber-50 px-2.5 py-1 rounded-xl border border-amber-200">1 / 5</span>
+                        </div>
+                        <div class="flex-grow mx-4 max-w-xs md:max-w-md bg-slate-200 h-3 rounded-full overflow-hidden shadow-inner">
+                            <div id="quiz-progress-bar" class="bg-gradient-to-r from-amber-400 to-amber-500 h-full transition-all duration-300" style="width: 20%;"></div>
+                        </div>
+                        <div class="flex items-center space-x-1 text-slate-600 bg-slate-100 px-2.5 py-1.5 rounded-xl border border-slate-200">
+                            <i data-lucide="zap" class="w-4 h-4 text-amber-500 animate-bounce"></i>
+                            <span id="quiz-live-points" class="text-xs font-extrabold">0 Poin</span>
+                        </div>
+                    </div>
+
+                    <!-- QUIZ CONTROLLERS (STATES) -->
+                    
+                    <!-- STATE A: START SCREEN -->
+                    <div id="quiz-state-start" class="py-8 text-center space-y-6 flex flex-col items-center justify-center flex-grow">
+                        <div class="bg-amber-100 text-amber-600 p-5 rounded-full shadow-lg transform rotate-[-5deg] hover:rotate-[5deg] transition-all">
+                            <i data-lucide="award" class="w-16 h-16"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="heading-font text-2xl md:text-3xl font-bold text-slate-800">Siap Menjadi Master Bangun Ruang?</h4>
+                            <p class="text-slate-500 font-medium text-sm max-w-md mx-auto">Selesaikan kuis interaktif mengenai sifat dan rumus volume kubus & balok untuk mendapatkan medali digital!</p>
+                        </div>
+                        
+                        <div class="bg-white px-6 py-4 rounded-2xl border border-slate-200 max-w-sm text-left shadow-sm space-y-1">
+                            <h5 class="text-xs font-black text-slate-400 uppercase tracking-wide">Aturan Main:</h5>
+                            <div class="flex items-center gap-2 text-xs font-bold text-slate-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Setiap soal bernilai 20 Poin</div>
+                            <div class="flex items-center gap-2 text-xs font-bold text-slate-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Total skor maksimal: 100 Poin</div>
+                            <div class="flex items-center gap-2 text-xs font-bold text-slate-600"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Dapatkan Lencana "Maharaja" untuk nilai sempurna!</div>
+                        </div>
+
+                        <button onclick="startQuiz()" class="px-8 py-4 bg-amber-400 hover:bg-amber-500 active:scale-95 text-slate-900 font-extrabold text-lg rounded-2xl shadow-lg shadow-amber-200 transition-all duration-200 cursor-pointer flex items-center gap-2">
+                            <i data-lucide="play" class="w-5 h-5"></i> Mulai Kuis Sekarang
+                        </button>
+                    </div>
+
+                    <!-- STATE B: ACTIVE QUESTION SCREEN (HIDDEN BY DEFAULT) -->
+                    <div id="quiz-state-active" class="hidden flex-grow flex flex-col justify-between pt-6 space-y-6">
+                        <div class="space-y-4">
+                            <!-- Question Title/Text -->
+                            <p id="question-text" class="text-lg md:text-xl font-extrabold text-slate-800 leading-snug">
+                                Pertanyaan di sini...
+                            </p>
+                            
+                            <!-- Optional Interactive Visualization or Illustration inside Question -->
+                            <div id="question-illustration" class="hidden bg-white p-4 rounded-2xl border border-slate-100 flex justify-center items-center shadow-inner">
+                                <!-- Rendered dynamically by javascript -->
+                            </div>
+                        </div>
+
+                        <!-- Options Choices Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="options-container">
+                            <!-- Options buttons rendered dynamically by javascript -->
+                        </div>
+
+                        <!-- Feedback Box (Hidden until option is selected) -->
+                        <div id="quiz-feedback-box" class="hidden p-4 rounded-2xl border flex items-start space-x-3 transition-all duration-300">
+                            <div id="feedback-icon-container" class="p-1.5 rounded-lg text-white">
+                                <!-- icon here -->
+                            </div>
+                            <div>
+                                <h5 id="feedback-title" class="text-sm font-extrabold uppercase leading-none">Status</h5>
+                                <p id="feedback-desc" class="text-xs text-slate-500 font-medium mt-1">Ulasan detail jawaban di sini.</p>
+                            </div>
+                        </div>
+
+                        <!-- Next / Submit Button Container -->
+                        <div class="flex justify-end pt-4 border-t border-slate-200">
+                            <button id="btn-next-question" onclick="nextQuestion()" disabled class="px-6 py-3 bg-slate-200 text-slate-400 font-black rounded-xl cursor-not-allowed transition-all flex items-center gap-1.5">
+                                Lanjut <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STATE C: RESULT SCORE SCREEN (HIDDEN BY DEFAULT) -->
+                    <div id="quiz-state-result" class="hidden py-8 text-center space-y-6 flex flex-col items-center justify-center flex-grow">
+                        <div class="relative">
+                            <!-- Medal / Badge Showcase -->
+                            <div id="result-badge-icon-bg" class="bg-indigo-100 text-indigo-600 p-6 rounded-full shadow-lg transform scale-110">
+                                <i id="result-badge-icon" data-lucide="award" class="w-16 h-16"></i>
+                            </div>
+                            <!-- Small absolute sparkle decorations -->
+                            <div class="absolute -top-3 -right-3 text-amber-400 animate-bounce"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <h4 class="heading-font text-2xl font-bold text-slate-800">Selamat, Kamu Selesai!</h4>
+                            <p id="result-badge-name" class="text-indigo-600 font-extrabold text-lg uppercase tracking-wider">Lencana: Master Ruang</p>
+                            <p id="result-message" class="text-slate-500 text-sm font-medium max-w-sm mx-auto">Kerja bagus! Kamu sudah menyelesaikan seluruh soal latihan.</p>
+                        </div>
+
+                        <!-- Big Circular score dashboard -->
+                        <div class="flex items-center space-x-4 bg-white px-6 py-4 rounded-2xl border-2 border-indigo-100 shadow-md">
+                            <div>
+                                <span class="text-slate-400 text-[10px] uppercase font-extrabold tracking-widest block leading-none">Skor Akhir</span>
+                                <span id="result-final-score" class="heading-font text-5xl font-black text-slate-800">80</span>
+                            </div>
+                            <div class="h-10 w-0.5 bg-slate-200"></div>
+                            <div class="text-left">
+                                <span class="text-xs font-bold text-slate-500 block">Status Kelulusan:</span>
+                                <span id="result-status-text" class="text-sm font-extrabold text-emerald-600 flex items-center gap-1"><i data-lucide="check-circle" class="w-4 h-4"></i> TUNTAS</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button onclick="restartQuiz()" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 font-bold rounded-xl active:scale-95 transition-all duration-200 cursor-pointer flex items-center gap-2 text-sm">
+                                <i data-lucide="refresh-cw" class="w-4 h-4"></i> Ulangi Kuis
+                            </button>
+                            <button onclick="scrollToSection('eksplorasi')" class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold rounded-xl shadow active:scale-95 transition-all duration-200 cursor-pointer flex items-center gap-2 text-sm">
+                                <i data-lucide="box" class="w-4 h-4"></i> Lanjut Eksplorasi
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 border-t-4 border-emerald-500 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-emerald-500 text-white p-1.5 rounded-xl">
+                            <i data-lucide="box" class="w-5 h-5"></i>
+                        </div>
+                        <span class="heading-font text-xl font-bold text-white tracking-wide">EduRuang</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        Media pembelajaran berbasis gamifikasi interaktif untuk materi Bangun Ruang Geometri Kelas V & VI SD (Fase C). Membantu mewujudkan pembelajaran digital yang interaktif dan berpusat pada siswa.
+                    </p>
+                </div>
+                
+                <div class="space-y-3">
+                    <h5 class="font-extrabold text-sm text-white uppercase tracking-wider">Materi & Fitur</h5>
+                    <ul class="text-xs space-y-2">
+                        <li><a href="#kurikulum" class="hover:text-emerald-400 transition-colors">Capaian & Alur Kurikulum</a></li>
+                        <li><a href="#eksplorasi" class="hover:text-emerald-400 transition-colors">Simulator Kubus & Balok 3D</a></li>
+                        <li><a href="#asesmen" class="hover:text-emerald-400 transition-colors">Asesmen Kuis Digital Langsung</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h5 class="font-extrabold text-sm text-white uppercase tracking-wider">Identitas Kurikulum</h5>
+                    <div class="bg-slate-800 p-3.5 rounded-xl border border-slate-700/60 text-[11px] leading-relaxed">
+                        <span class="block text-emerald-400 font-bold mb-1">Kemendikbudristek RI</span>
+                        Sesuai pedoman Kurikulum Merdeka Fase C Bidang Studi Matematika (Pengukuran Spasial & Geometri).
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 EduRuang. Dibuat dengan penuh kepedulian untuk pendidikan anak bangsa.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <span class="flex items-center gap-1"><i data-lucide="smile" class="w-3.5 h-3.5"></i> Ramah Anak</span>
+                    <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Bebas Iklan</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT LOGIC & INTERACTION CONTROLLER -->
+    <script>
+        // --- 1. CONFIGURATION & STATE ---
+        let currentShape = 'kubus'; // 'kubus' or 'balok'
+        let currentRotationY = 45; // custom dynamic rotations of 3D shapes
+
+        // Sifat-Sifat dataset
+        const shapeData = {
+            kubus: {
+                sisi: 6,
+                rusuk: 12,
+                sudut: 8,
+                funfact: "Semua sisi pada kubus memiliki bentuk dan ukuran yang sama persis (kongruen) berupa persegi sempurna!",
+                formula: "V = s &times; s &times; s",
+                stepFn: (inputs) => {
+                    const s = inputs.side;
+                    return `V = ${s} &times; ${s} &times; ${s} = ${s*s*s} cm³`;
+                },
+                calcVolume: (inputs) => Math.pow(inputs.side, 3)
+            },
+            balok: {
+                sisi: 6,
+                rusuk: 12,
+                sudut: 8,
+                funfact: "Balok terbentuk dari minimal 2 pasang persegi panjang yang saling berhadapan dengan ukuran sama!",
+                formula: "V = p &times; l &times; t",
+                stepFn: (inputs) => {
+                    const p = inputs.length;
+                    const l = inputs.width;
+                    const t = inputs.height;
+                    return `V = ${p} &times; ${l} &times; ${t} = ${p*l*t} cm³`;
+                },
+                calcVolume: (inputs) => inputs.length * inputs.width * inputs.height
+            }
+        };
+
+        // Quiz Questions Dataset (5 Gamified questions)
+        const quizQuestions = [
+            {
+                id: 1,
+                question: "Sebuah kubus mainan memiliki panjang sisi sebesar 5 cm. Berapakah volume kubus mainan tersebut?",
+                illustrationHtml: `<div class="bg-emerald-50 text-emerald-700 p-2.5 rounded-xl text-xs font-black heading-font flex items-center gap-2"><i data-lucide="box" class="w-4 h-4 animate-bounce"></i> Sisi = 5 cm</div>`,
+                options: [
+                    { label: "100 cm³", correct: false, explanation: "Salah. Ingat rumusnya: s x s x s. (bukan dikali 20!)" },
+                    { label: "125 cm³", correct: true, explanation: "BENAR! Volume Kubus = 5 x 5 x 5 = 125 cm³." },
+                    { label: "150 cm³", correct: false, explanation: "Salah. 150 cm² adalah luas permukaannya, bukan volume." },
+                    { label: "25 cm³", correct: false, explanation: "Salah. 25 cm² adalah luas dari satu sisi persegi, harus dikali tinggi lagi!" }
+                ]
+            },
+            {
+                id: 2,
+                question: "Manakah di antara bangun ruang berikut yang semua sisi datar penyusunnya memiliki bentuk persegi yang sama besar?",
+                illustrationHtml: "",
+                options: [
+                    { label: "Balok", correct: false, explanation: "Salah. Sisi balok terdiri atas persegi panjang dengan ukuran yang bervariasi." },
+                    { label: "Tabung", correct: false, explanation: "Salah. Tabung memiliki sisi selimut melengkung dan lingkaran." },
+                    { label: "Prisma Segitiga", correct: false, explanation: "Salah. Sisi tegaknya berbentuk persegi/persegi panjang, dasarnya segitiga." },
+                    { label: "Kubus", correct: true, explanation: "BENAR! Kubus tersusun dari 6 bidang persegi kongruen (sama besar)." }
+                ]
+            },
+            {
+                id: 3,
+                question: "Bila sebuah balok kotak pensil memiliki panjang p = 10 cm, lebar l = 4 cm, dan tinggi t = 3 cm. Berapa volume total kotak pensil tersebut?",
+                illustrationHtml: `<div class="bg-indigo-50 text-indigo-700 p-2.5 rounded-xl text-xs font-black heading-font flex flex-wrap gap-2 justify-center"><span class="bg-indigo-100 px-2 py-0.5 rounded">p = 10 cm</span><span class="bg-rose-100 px-2 py-0.5 rounded text-rose-700">l = 4 cm</span><span class="bg-amber-100 px-2 py-0.5 rounded text-amber-700">t = 3 cm</span></div>`,
+                options: [
+                    { label: "120 cm³", correct: true, explanation: "BENAR! Volume Balok = p x l x t = 10 x 4 x 3 = 120 cm³." },
+                    { label: "17 cm³", correct: false, explanation: "Salah. Itu adalah penjumlahan dari p + l + t. Volume dikalikan, bukan ditambah!" },
+                    { label: "40 cm³", correct: false, explanation: "Salah. Ini hanya perkalian panjang dikali lebar, tingginya belum dihitung." },
+                    { label: "100 cm³", correct: false, explanation: "Salah. Periksa kembali perkalian p x l x t kamu ya." }
+                ]
+            },
+            {
+                id: 4,
+                question: "Berapa banyak jumlah rusuk dan titik sudut yang berturut-turut dimiliki oleh sebuah bangun ruang balok?",
+                illustrationHtml: "",
+                options: [
+                    { label: "6 Sisi & 8 Sudut", correct: false, explanation: "Salah. Pertanyaannya menanyakan jumlah rusuk dan titik sudut." },
+                    { label: "12 Rusuk & 8 Titik Sudut", correct: true, explanation: "BENAR! Balok (dan kubus) memiliki 12 rusuk pembentuk dan 8 titik pertemuan sudut." },
+                    { label: "8 Rusuk & 12 Titik Sudut", correct: false, explanation: "Salah. Terbalik! Jumlah rusuknya adalah 12, sudutnya yang 8." },
+                    { label: "12 Rusuk & 6 Titik Sudut", correct: false, explanation: "Salah. Titik sudutnya ada 8, mari hitung kembali di model 3D di atas." }
+                ]
+            },
+            {
+                id: 5,
+                question: "Boni memiliki akuarium mini berbentuk kubus dengan volume sebesar 64 cm³. Berapakah panjang masing-masing rusuk akuarium milik Boni?",
+                illustrationHtml: `<div class="bg-emerald-50 text-emerald-700 p-2.5 rounded-xl text-xs font-black heading-font flex items-center gap-2"><i data-lucide="help-circle" class="w-4 h-4"></i> Volume = 64 cm³</div>`,
+                options: [
+                    { label: "8 cm", correct: false, explanation: "Salah. Karena 8 x 8 x 8 = 512 cm³, bukan 64 cm³." },
+                    { label: "16 cm", correct: false, explanation: "Salah. 16 x 4 adalah 64, namun perkalian untuk volume kubus harus s x s x s (sama tiga-tiganya)." },
+                    { label: "4 cm", correct: true, explanation: "BENAR! Karena 4 x 4 x 4 = 64 cm³. Jadi panjang sisinya adalah 4 cm." },
+                    { label: "6 cm", correct: false, explanation: "Salah. 6 x 6 x 6 = 216 cm³, silakan dicari nilai akar pangkat tiganya." }
+                ]
+            }
+        ];
+
+        let quizState = {
+            activeQuestionIdx: 0,
+            score: 0,
+            hasSelectedOption: false,
+            selectedOptionIdx: null
+        };
+
+
+        // --- 2. LAYOUT & INTERFACE INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initial render call
+            updateVisualization();
+            initQuiz();
+            
+            // Re-render Lucide icons initially
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+
+        // Smooth Scroll Controller
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+
+        // --- 3. TAB CONTROLLER FOR MERDEKA CURRICULUM ---
+        function switchTab(tabId) {
+            // Hide all tab panes
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+            
+            // Show active pane
+            document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+
+            // Reset tabs styling
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn w-full text-left p-4 rounded-2xl border-2 border-transparent bg-white shadow-sm hover:bg-emerald-50/50 hover:border-emerald-200 flex items-center justify-between transition-all duration-300 cursor-pointer";
+                const iconContainer = btn.querySelector('.tab-icon-container');
+                iconContainer.className = "tab-icon-container bg-slate-200 text-slate-600 p-2.5 rounded-xl";
+            });
+
+            // Set styling on selected active tab button
+            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+            activeBtn.className = "tab-btn active-tab w-full text-left p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/80 shadow-md flex items-center justify-between transition-all duration-300 cursor-pointer";
+            
+            const activeIconContainer = activeBtn.querySelector('.tab-icon-container');
+            if (tabId === 'cp') activeIconContainer.className = "tab-icon-container bg-emerald-500 text-white p-2.5 rounded-xl shadow-md";
+            if (tabId === 'tp') activeIconContainer.className = "tab-icon-container bg-indigo-500 text-white p-2.5 rounded-xl shadow-md";
+            if (tabId === 'atp') activeIconContainer.className = "tab-icon-container bg-amber-500 text-white p-2.5 rounded-xl shadow-md";
+
+            // Trigger Lucide to render icon dynamically
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+
+        // --- 4. 3D VISUALIZATION & DYNAMIC CALCULATOR ---
+        function selectShape(shapeName) {
+            currentShape = shapeName;
+
+            // Highlight active button style in layout
+            const btnKubus = document.getElementById('btn-shape-kubus');
+            const btnBalok = document.getElementById('btn-shape-balok');
+
+            if (shapeName === 'kubus') {
+                btnKubus.className = "flex-1 py-3 rounded-xl font-black heading-font text-sm flex items-center justify-center gap-2 transition-all duration-300 bg-white shadow text-emerald-600 border border-emerald-100 cursor-pointer";
+                btnBalok.className = "flex-1 py-3 rounded-xl font-black heading-font text-sm flex items-center justify-center gap-2 transition-all duration-300 text-slate-500 hover:text-slate-800 cursor-pointer";
+                
+                document.getElementById('slider-kubus-container').classList.remove('hidden');
+                document.getElementById('slider-balok-container').classList.add('hidden');
+            } else {
+                btnBalok.className = "flex-1 py-3 rounded-xl font-black heading-font text-sm flex items-center justify-center gap-2 transition-all duration-300 bg-white shadow text-emerald-600 border border-emerald-100 cursor-pointer";
+                btnKubus.className = "flex-1 py-3 rounded-xl font-black heading-font text-sm flex items-center justify-center gap-2 transition-all duration-300 text-slate-500 hover:text-slate-800 cursor-pointer";
+                
+                document.getElementById('slider-kubus-container').classList.add('hidden');
+                document.getElementById('slider-balok-container').classList.remove('hidden');
+            }
+
+            // Update details and recalculate
+            updateVisualization();
+        }
+
+        function rotateShape(direction) {
+            const wrapper = document.getElementById('interactive-shape-wrapper');
+            if (direction === 'left') {
+                currentRotationY -= 30;
+            } else {
+                currentRotationY += 30;
+            }
+            wrapper.style.transform = `rotateX(-25deg) rotateY(${currentRotationY}deg)`;
+        }
+
+        function updateVisualization() {
+            let volume = 0;
+            const data = shapeData[currentShape];
+
+            // Sifat labels update
+            document.getElementById('sifat-sisi').innerText = data.sisi;
+            document.getElementById('sifat-rusuk').innerText = data.rusuk;
+            document.getElementById('sifat-sudut').innerText = data.sudut;
+            document.getElementById('funfact-text').innerText = data.funfact;
+            document.getElementById('formula-text').innerHTML = data.formula;
+
+            // Elements references for 3D Faces
+            const faceFront = document.getElementById('shape-face-front');
+            const faceBack = document.getElementById('shape-face-back');
+            const faceLeft = document.getElementById('shape-face-left');
+            const faceRight = document.getElementById('shape-face-right');
+            const faceTop = document.getElementById('shape-face-top');
+            const faceBottom = document.getElementById('shape-face-bottom');
+
+            if (currentShape === 'kubus') {
+                // Collect input from slider
+                const sideVal = parseInt(document.getElementById('input-side').value);
+                document.getElementById('label-side').innerText = sideVal + " cm";
+
+                // Volume calculation
+                volume = data.calcVolume({ side: sideVal });
+                document.getElementById('calculation-steps').innerHTML = data.stepFn({ side: sideVal });
+
+                // Map side length to interactive 3D scale (base unit: 16px per cm)
+                const baseUnit = 16;
+                const dim = sideVal * baseUnit;
+
+                // Adjust faces transform properties dynamically to keep perfect cube shape
+                const halfDim = dim / 2;
+
+                applyFaceSize(faceFront, dim, dim, `rotateY(0deg) translateZ(${halfDim}px)`);
+                applyFaceSize(faceBack, dim, dim, `rotateY(180deg) translateZ(${halfDim}px)`);
+                applyFaceSize(faceLeft, dim, dim, `rotateY(-90deg) translateZ(${halfDim}px)`);
+                applyFaceSize(faceRight, dim, dim, `rotateY(90deg) translateZ(${halfDim}px)`);
+                applyFaceSize(faceTop, dim, dim, `rotateX(90deg) translateZ(${halfDim}px)`);
+                applyFaceSize(faceBottom, dim, dim, `rotateX(-90deg) translateZ(${halfDim}px)`);
+
+                faceFront.innerText = sideVal + " cm";
+                faceRight.innerText = sideVal + " cm";
+                faceTop.innerText = sideVal + " cm";
+
+            } else {
+                // Collect inputs from sliders
+                const lengthVal = parseInt(document.getElementById('input-length').value);
+                const widthVal = parseInt(document.getElementById('input-width').value);
+                const heightVal = parseInt(document.getElementById('input-height').value);
+
+                document.getElementById('label-length').innerText = lengthVal + " cm";
+                document.getElementById('label-width').innerText = widthVal + " cm";
+                document.getElementById('label-height').innerText = heightVal + " cm";
+
+                // Volume calculation
+                volume = data.calcVolume({ length: lengthVal, width: widthVal, height: heightVal });
+                document.getElementById('calculation-steps').innerHTML = data.stepFn({ length: lengthVal, width: widthVal, height: heightVal });
+
+                const baseUnit = 16;
+                const pDim = lengthVal * baseUnit; // width of face
+                const lDim = widthVal * baseUnit;  // depth of face
+                const tDim = heightVal * baseUnit; // height of face
+
+                const halfLength = pDim / 2;
+                const halfWidth = lDim / 2;
+                const halfHeight = tDim / 2;
+
+                // Front and Back: Size width=p, height=t
+                applyFaceSize(faceFront, pDim, tDim, `rotateY(0deg) translateZ(${halfWidth}px)`);
+                applyFaceSize(faceBack, pDim, tDim, `rotateY(180deg) translateZ(${halfWidth}px)`);
+
+                // Left and Right: Size width=l, height=t
+                applyFaceSize(faceLeft, lDim, tDim, `rotateY(-90deg) translateZ(${halfLength}px)`);
+                applyFaceSize(faceRight, lDim, tDim, `rotateY(90deg) translateZ(${halfLength}px)`);
+
+                // Top and Bottom: Size width=p, height=l
+                applyFaceSize(faceTop, pDim, lDim, `rotateX(90deg) translateZ(${halfHeight}px)`);
+                applyFaceSize(faceBottom, pDim, lDim, `rotateX(-90deg) translateZ(${halfHeight}px)`);
+
+                faceFront.innerText = lengthVal + " cm";
+                faceRight.innerText = widthVal + " cm";
+                faceTop.innerText = heightVal + " cm";
+            }
+
+            // Update main volume calculated count text
+            document.getElementById('calculated-volume').innerText = volume;
+        }
+
+        // Helper function for 3D faces manipulation
+        function applyFaceSize(faceEl, w, h, transformValue) {
+            faceEl.style.width = w + "px";
+            faceEl.style.height = h + "px";
+            faceEl.style.left = `calc(50% - ${w/2}px)`;
+            faceEl.style.top = `calc(50% - ${h/2}px)`;
+            faceEl.style.transform = transformValue;
+        }
+
+
+        // --- 5. GAMIFIED ASSESSMENT QUIZ CONTROLLER ---
+        function initQuiz() {
+            // Setup quiz UI state
+            document.getElementById('quiz-state-start').classList.remove('hidden');
+            document.getElementById('quiz-state-active').classList.add('hidden');
+            document.getElementById('quiz-state-result').classList.add('hidden');
+            document.getElementById('quiz-progress-section').classList.add('hidden');
+        }
+
+        function startQuiz() {
+            quizState.activeQuestionIdx = 0;
+            quizState.score = 0;
+            quizState.hasSelectedOption = false;
+            quizState.selectedOptionIdx = null;
+
+            // Update UI widgets
+            document.getElementById('quiz-state-start').classList.add('hidden');
+            document.getElementById('quiz-state-active').classList.remove('hidden');
+            document.getElementById('quiz-progress-section').classList.remove('hidden');
+            
+            updateLivePoints(0);
+            renderActiveQuestion();
+        }
+
+        function renderActiveQuestion() {
+            quizState.hasSelectedOption = false;
+            quizState.selectedOptionIdx = null;
+
+            // Enable/Disable navigation buttons state
+            const btnNext = document.getElementById('btn-next-question');
+            btnNext.disabled = true;
+            btnNext.className = "px-6 py-3 bg-slate-200 text-slate-400 font-black rounded-xl cursor-not-allowed transition-all flex items-center gap-1.5";
+
+            const currentQ = quizQuestions[quizState.activeQuestionIdx];
+
+            // Progress tracking values
+            const progressPercent = ((quizState.activeQuestionIdx + 1) / quizQuestions.length) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+            document.getElementById('quiz-progress-text').innerText = `${quizState.activeQuestionIdx + 1} / ${quizQuestions.length}`;
+
+            // Set question text & illustration
+            document.getElementById('question-text').innerText = currentQ.question;
+            const illContainer = document.getElementById('question-illustration');
+            if (currentQ.illustrationHtml !== "") {
+                illContainer.innerHTML = currentQ.illustrationHtml;
+                illContainer.classList.remove('hidden');
+            } else {
+                illContainer.classList.add('hidden');
+            }
+
+            // Hide feedback explanation box initially
+            document.getElementById('quiz-feedback-box').classList.add('hidden');
+
+            // Render options buttons
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = "";
+
+            currentQ.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "quiz-opt-btn text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/20 bg-white font-extrabold text-sm md:text-base transition-all duration-200 cursor-pointer flex items-center justify-between";
+                optBtn.onclick = () => selectOption(idx);
+                
+                optBtn.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 font-black text-slate-500 text-xs">${String.fromCharCode(65 + idx)}</span>
+                        <span class="text-slate-700">${opt.label}</span>
+                    </div>
+                    <div class="opt-indicator-icon"></div>
+                `;
+                optionsContainer.appendChild(optBtn);
+            });
+
+            // Re-render Lucide icons dynamically if used inside illustrations
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if (quizState.hasSelectedOption) return; // Allow select only once
+
+            quizState.hasSelectedOption = true;
+            quizState.selectedOptionIdx = optIndex;
+
+            const currentQ = quizQuestions[quizState.activeQuestionIdx];
+            const isCorrect = currentQ.options[optIndex].correct;
+
+            // Highlight chosen option button
+            const optButtons = document.querySelectorAll('.quiz-opt-btn');
+            optButtons.forEach((btn, idx) => {
+                btn.disabled = true; // disable all option buttons immediately
+                btn.className = "quiz-opt-btn text-left p-4 rounded-2xl border-2 bg-white font-extrabold text-sm md:text-base transition-all duration-200 flex items-center justify-between";
+                const numBox = btn.querySelector('span');
+                const indicator = btn.querySelector('.opt-indicator-icon');
+
+                if (currentQ.options[idx].correct) {
+                    // Show correct answer with vibrant green color
+                    btn.classList.add('border-emerald-500', 'bg-emerald-50/50');
+                    numBox.className = "flex items-center justify-center w-8 h-8 rounded-xl bg-emerald-500 border border-emerald-600 font-black text-white text-xs";
+                    indicator.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500"></i>`;
+                } else if (idx === optIndex) {
+                    // Show wrong answer in red color if chosen
+                    btn.classList.add('border-rose-400', 'bg-rose-50/50');
+                    numBox.className = "flex items-center justify-center w-8 h-8 rounded-xl bg-rose-500 border border-rose-600 font-black text-white text-xs";
+                    indicator.innerHTML = `<i data-lucide="x-circle" class="w-5 h-5 text-rose-500"></i>`;
+                } else {
+                    btn.classList.add('border-slate-100', 'opacity-60');
+                }
+            });
+
+            // Apply points
+            if (isCorrect) {
+                quizState.score += 20;
+                updateLivePoints(quizState.score);
+            }
+
+            // Show feedback explanations details box
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            const feedbackIcon = document.getElementById('feedback-icon-container');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackDesc = document.getElementById('feedback-desc');
+
+            feedbackBox.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackBox.className = "p-4 rounded-2xl border border-emerald-300 bg-emerald-50/80 flex items-start space-x-3 transition-all duration-300";
+                feedbackIcon.className = "p-1.5 rounded-lg text-white bg-emerald-500";
+                feedbackIcon.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i>`;
+                feedbackTitle.innerText = "Sangat Bagus!";
+                feedbackTitle.className = "text-sm font-extrabold uppercase leading-none text-emerald-800";
+            } else {
+                feedbackBox.className = "p-4 rounded-2xl border border-rose-200 bg-rose-50/80 flex items-start space-x-3 transition-all duration-300";
+                feedbackIcon.className = "p-1.5 rounded-lg text-white bg-rose-500";
+                feedbackIcon.innerHTML = `<i data-lucide="help-circle" class="w-4 h-4"></i>`;
+                feedbackTitle.innerText = "Belum Tepat!";
+                feedbackTitle.className = "text-sm font-extrabold uppercase leading-none text-rose-800";
+            }
+            feedbackDesc.innerText = currentQ.options[optIndex].explanation;
+
+            // Enable next button
+            const btnNext = document.getElementById('btn-next-question');
+            btnNext.disabled = false;
+            btnNext.className = "px-6 py-3 bg-amber-400 hover:bg-amber-500 active:scale-95 text-slate-900 font-black rounded-xl shadow cursor-pointer transition-all flex items-center gap-1.5";
+            if (quizState.activeQuestionIdx === quizQuestions.length - 1) {
+                btnNext.innerHTML = `Selesai Kuis <i data-lucide="award" class="w-4 h-4"></i>`;
+            } else {
+                btnNext.innerHTML = `Lanjut <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+            }
+
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function updateLivePoints(pts) {
+            document.getElementById('quiz-live-points').innerText = `${pts} Poin`;
+            document.getElementById('header-score').innerText = pts;
+        }
+
+        function nextQuestion() {
+            if (quizState.activeQuestionIdx < quizQuestions.length - 1) {
+                quizState.activeQuestionIdx++;
+                renderActiveQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            // Hide active state and progress
+            document.getElementById('quiz-state-active').classList.add('hidden');
+            document.getElementById('quiz-progress-section').classList.add('hidden');
+            
+            // Show result screen state
+            const resultState = document.getElementById('quiz-state-result');
+            resultState.classList.remove('hidden');
+
+            const score = quizState.score;
+            document.getElementById('result-final-score').innerText = score;
+
+            // Configure dynamic gamified badge & feedback text based on score
+            const badgeIconBg = document.getElementById('result-badge-icon-bg');
+            const badgeIcon = document.getElementById('result-badge-icon');
+            const badgeName = document.getElementById('result-badge-name');
+            const message = document.getElementById('result-message');
+            const statusText = document.getElementById('result-status-text');
+
+            if (score === 100) {
+                badgeIconBg.className = "bg-amber-100 text-amber-500 p-6 rounded-full shadow-xl transform scale-110 border-4 border-amber-300 animate-bounce";
+                badgeIcon.setAttribute('data-lucide', 'crown');
+                badgeName.innerText = "Lencana: Maharaja Bangun Ruang";
+                badgeName.className = "text-amber-500 font-extrabold text-lg uppercase tracking-wider";
+                message.innerText = "Sangat luar biasa! Kamu memahami seluruh konsep materi kubus dan balok dengan sempurna!";
+                statusText.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i> SANGAT TUNTAS`;
+                statusText.className = "text-sm font-extrabold text-amber-500 flex items-center gap-1";
+            } else if (score >= 80) {
+                badgeIconBg.className = "bg-indigo-100 text-indigo-600 p-6 rounded-full shadow-xl transform scale-110 border-4 border-indigo-200";
+                badgeIcon.setAttribute('data-lucide', 'award');
+                badgeName.innerText = "Lencana: Penjelajah Ulung";
+                badgeName.className = "text-indigo-600 font-extrabold text-lg uppercase tracking-wider";
+                message.innerText = "Hebat sekali! Pemahaman ruang kamu sangat mantap. Tingkatkan terus belajarmu!";
+                statusText.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i> TUNTAS`;
+                statusText.className = "text-sm font-extrabold text-emerald-600 flex items-center gap-1";
+            } else if (score >= 60) {
+                badgeIconBg.className = "bg-emerald-100 text-emerald-600 p-6 rounded-full shadow-xl transform scale-110 border-4 border-emerald-200";
+                badgeIcon.setAttribute('data-lucide', 'compass');
+                badgeName.innerText = "Lencana: Pengamat Ruang";
+                badgeName.className = "text-emerald-600 font-extrabold text-lg uppercase tracking-wider";
+                message.innerText = "Cukup baik, kamu berhasil melampaui batas minimum. Mari coba pelajari materi lagi agar lebih hebat!";
+                statusText.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i> TUNTAS (KKM)`;
+                statusText.className = "text-sm font-extrabold text-emerald-500 flex items-center gap-1";
+            } else {
+                badgeIconBg.className = "bg-slate-100 text-slate-500 p-6 rounded-full shadow-xl transform scale-110 border-4 border-slate-200";
+                badgeIcon.setAttribute('data-lucide', 'book-open');
+                badgeName.innerText = "Lencana: Pemula Belajar";
+                badgeName.className = "text-slate-500 font-extrabold text-lg uppercase tracking-wider";
+                message.innerText = "Jangan berkecil hati ya! Eksplorasi kembali simulator ruang 3D di atas lalu coba kerjakan kuisnya lagi.";
+                statusText.innerHTML = `<i data-lucide="alert-circle" class="w-4 h-4"></i> PERLU BELAJAR LAGI`;
+                statusText.className = "text-sm font-extrabold text-rose-500 flex items-center gap-1";
+            }
+
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+    </script>
+</body>
+</html>
